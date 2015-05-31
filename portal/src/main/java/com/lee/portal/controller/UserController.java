@@ -1,5 +1,7 @@
 package com.lee.portal.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lee.portal.po.UserPO;
 import com.lee.portal.service.UserService;
 
 @Controller
@@ -30,7 +33,11 @@ public class UserController {
 	@RequestMapping("/list")
 	public ModelAndView list(HttpServletRequest request,HttpServletResponse response){
 		ModelAndView view=new ModelAndView("user/list");
+		
+		List<UserPO> userList=userService.list();
+		view.addObject("userList", userList);
 		view.addObject("mess", "user freemarker test 测试测试");
+	
 		return view;
 		
 	}

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.lee</groupId>
@@ -14,6 +16,10 @@
 	<modules>
 		<module>portal</module>
 		<module>commons</module>
+		<module>dao</module>
+		<module>dao-api</module>
+		<module>query-service</module>
+		<module>query-service-api</module>
 	</modules>
 
 	<properties>
@@ -26,9 +32,9 @@
 		<mysql-connector-java.version>5.1.30</mysql-connector-java.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<commons-pool.version>1.6</commons-pool.version>
-		<log4j.version>1.2.17</log4j.version>
 		<slf4j-api.version>1.7.5</slf4j-api.version>
-		<slf4j-log4j12.version>1.7.5</slf4j-log4j12.version>
+		<logback-core.version>1.1.1</logback-core.version>
+		<logback-classic.version>1.1.1</logback-classic.version>
 		<freemarker.version>2.3.20</freemarker.version>
 		<dubbo.version>2.4.9</dubbo.version>
 		<druid.version>1.0.12</druid.version>
@@ -36,4 +42,73 @@
 		<zookeeper.version>3.3.2</zookeeper.version>
 		<commons-lang.version>2.6</commons-lang.version>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- maven统一管理工程自身jar -->
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>commons</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>dao</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>dao-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>query-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>query-service-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<!-- 开源jar包管理 -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>commons-logging</artifactId>
+						<groupId>commons-logging</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.zookeeper</groupId>
+				<artifactId>zookeeper</artifactId>
+				<version>${zookeeper.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>slf4j-log4j12</artifactId>
+						<groupId>org.slf4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>log4j</artifactId>
+						<groupId>log4j</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

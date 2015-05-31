@@ -73,7 +73,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-	
+
 		<!-- mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -102,22 +102,7 @@
 			<artifactId>commons-pool</artifactId>
 			<version>${commons-pool.version}</version>
 		</dependency>
-		<!-- log -->
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j-api.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j-log4j12.version}</version>
-		</dependency>
+		
 		<!-- freemarker -->
 		<dependency>
 			<groupId>org.freemarker</groupId>
@@ -150,10 +135,40 @@
 			<version>${zookeeper.version}</version>
 		</dependency>
 
+		<!-- logback -->
 		<dependency>
-			<groupId>com.lee</groupId>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback-classic.version}</version>
+		</dependency>	
+		
+
+		<!-- 依赖工程自身 -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>commons</artifactId>
-			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>dao</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>query-service-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>query-service</artifactId>
 		</dependency>
 	</dependencies>
 	<build>
