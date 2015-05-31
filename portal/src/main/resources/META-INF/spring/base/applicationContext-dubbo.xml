@@ -7,10 +7,12 @@
 		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 	<dubbo:application name="${dubbo.application.name}" />
-	<dubbo:registry protocol="dubbo" address="${dubbo.registry.address}" check="${dubbo.registry.check}"/>
+	<dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" check="${dubbo.registry.check}"/>
 	
-	<!-- 用dubbo协议在20880端口暴露服务 -->
-	<!-- <dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" /> -->
+	<!-- 生产者用dubbo协议在20880端口暴露服务
+	<dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" />
+	 --> 
 	<dubbo:consumer timeout="${dubbo.consumer.timeout}" retries="${dubbo.consumer.retries}" check="${dubbo.consumer.check}" />
+
 
 </beans>

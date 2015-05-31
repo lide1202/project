@@ -3,9 +3,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
 <title>500</title>
 </head>
 <body>
 500
+=======
+<title>404</title>
+</head>
+<body>
+404
+>>>>>>> branch 'master' of https://github.com/lide1202/project.git
 </body>
 </html>

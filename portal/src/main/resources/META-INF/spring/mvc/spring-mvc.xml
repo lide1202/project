@@ -18,7 +18,6 @@
 
     <mvc:annotation-driven />
 
-
 	<!-- 使用JSP视图解析器
     <bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
