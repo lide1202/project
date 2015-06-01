@@ -7,7 +7,7 @@ import com.lee.commons.utils.StartupUtil;
 
 public class Startup {
     public static void main(String[] args) throws Exception {
-    	Logger logger= LoggerFactory.getLogger(Startup.class);
+    	//Logger logger= LoggerFactory.getLogger(Startup.class);
     	
         StartupUtil.startApplication("query-service", args);
     }

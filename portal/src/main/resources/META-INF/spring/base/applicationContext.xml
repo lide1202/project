@@ -10,7 +10,7 @@
                         http://www.springframework.org/schema/mvc  
                         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
     <!-- 引入配置文件 -->
-    <context:property-placeholder location="classpath:remote-dubbo.properties,classpath:remote-db.properties" />
+    <context:property-placeholder location="classpath:remote-dubbo.properties,classpath:remote-db.properties,classpath:global.properties" />
 
 
 	<!-- 数据源配置 -->

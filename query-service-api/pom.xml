@@ -35,13 +35,10 @@
 			<version>${mybatis-spring.version}</version>
 		</dependency>
 		<!-- 依赖工程自身 -->
+
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>commons</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>dao</artifactId>
+			<artifactId>dao-api</artifactId>
 		</dependency>
 	</dependencies>
 </project>

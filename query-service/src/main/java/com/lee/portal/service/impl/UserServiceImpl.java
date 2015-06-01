@@ -1,5 +1,7 @@
 package com.lee.portal.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +30,11 @@ public class UserServiceImpl extends BaseServiceImpl<UserPO,String> implements U
 		// TODO Auto-generated method stub
 		return this.userDao;
 	}
+	
 
+	public List<UserPO> list(){
+		List<UserPO> userList=userDao.findByStatementPostfix(".select", new String[]{}, new String[]{}, null, null);
+		return userList;
+		
+	}
 }

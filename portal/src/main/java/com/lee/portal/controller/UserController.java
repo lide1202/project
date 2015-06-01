@@ -1,14 +1,18 @@
 package com.lee.portal.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lee.portal.po.UserPO;
 import com.lee.portal.service.UserService;
 
 @Controller
@@ -19,6 +23,8 @@ public class UserController {
 	@Qualifier("userService")
 	private UserService userService;
 	
+	@Value("${staticResPath}")
+	private String staticResPath;
 	
 	/**
 	 * @RequestMapping("/list")时http://localhost:8080/portal/user/list.(do|html|jsp)
@@ -30,7 +36,12 @@ public class UserController {
 	@RequestMapping("/list")
 	public ModelAndView list(HttpServletRequest request,HttpServletResponse response){
 		ModelAndView view=new ModelAndView("user/list");
+		
+		List<UserPO> userList=userService.list();
+		view.addObject("staticResPath", staticResPath);
+		view.addObject("userList", userList);
 		view.addObject("mess", "user freemarker test 测试测试");
+	
 		return view;
 		
 	}
