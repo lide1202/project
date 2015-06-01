@@ -64,7 +64,10 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>spring-mvc</servlet-name>
-		<!-- /会拦截所有请求 ，可以配置成*.do -->
-		<url-pattern>/</url-pattern>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>spring-mvc</servlet-name>
+		<url-pattern>*.ajax</url-pattern>
 	</servlet-mapping>
 </web-app>
