@@ -1,9 +1,13 @@
 package com.lee.portal.po;
 
+import java.io.Serializable;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("UserPO")
-public class UserPO {
+public class UserPO implements Serializable{
+
+	private static final long serialVersionUID = 1L;
     private String uid;
     private String loginname;
     private String loginpass;

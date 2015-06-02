@@ -283,7 +283,7 @@
                     <!--  内容顶部导航区域开结束================================================================-->
                     <div class="row-fluid">
                         <div class="span12">
-                        	<iframe id="iframepage" name="iframepage"  width="100%" height="100%" scrolling="no" frameborder="0" src="user/list.do"></iframe>
+                        	<iframe id="iframepage" name="iframepage"  width="100%" height="100%" scrolling="no" frameborder="0" src="user/list.html"></iframe>
                         </div>
                     </div>
                     <!--  右侧内容区域结束 ================================================================--> 
@@ -480,5 +480,6 @@
             </script>
         
         </div>
+        
     </body>
 </html>
