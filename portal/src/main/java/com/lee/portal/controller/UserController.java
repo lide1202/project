@@ -17,30 +17,26 @@ import com.lee.portal.service.UserService;
 
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController{
 
 	@Autowired() 
 	@Qualifier("userService")
 	private UserService userService;
 	
-	@Value("${staticResPath}")
-	private String staticResPath;
-	
 	/**
-	 * @RequestMapping("/list")时http://localhost:8080/portal/user/list.(do|html|jsp)
-	 * @RequestMapping("/list.do")时http://localhost:8080/portal/user/list.do
+	 * @RequestMapping("/list")时http://localhost:8080/portal/user/list.(do|html|jsp|ajax)
+	 * @RequestMapping("/list.html")时http://localhost:8080/portal/user/list.html
 	 * @param request
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping("/list")
-	public ModelAndView list(HttpServletRequest request,HttpServletResponse response){
+	@RequestMapping("/list.html")
+	public ModelAndView list(HttpServletRequest request,HttpServletResponse response,UserPO userPO){
+		
 		ModelAndView view=new ModelAndView("user/list");
 		
-		List<UserPO> userList=userService.list();
-		view.addObject("staticResPath", staticResPath);
+		List<UserPO> userList=userService.list(userPO);
 		view.addObject("userList", userList);
-		view.addObject("mess", "user freemarker test 测试测试");
 	
 		return view;
 		

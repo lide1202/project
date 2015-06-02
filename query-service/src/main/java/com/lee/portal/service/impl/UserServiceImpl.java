@@ -1,5 +1,6 @@
 package com.lee.portal.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -32,8 +33,13 @@ public class UserServiceImpl extends BaseServiceImpl<UserPO,String> implements U
 	}
 	
 
-	public List<UserPO> list(){
-		List<UserPO> userList=userDao.findByStatementPostfix(".select", new String[]{}, new String[]{}, null, null);
+	public List<UserPO> list(UserPO userPO){
+		
+		String loginname=userPO.getLoginname();
+		String status=userPO.getStatus()!=null && userPO.getStatus()==true?"1":"0";
+		
+		List<UserPO> userList=userDao.findByStatementPostfix(".select", new String[]{"loginname","status"}, new String[]{loginname,status}, null, null);
+		
 		return userList;
 		
 	}

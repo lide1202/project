@@ -6,5 +6,5 @@ import com.lee.portal.po.UserPO;
 import com.lee.query.service.BaseService;
 
 public interface UserService extends BaseService<UserPO,String>{
-	public List<UserPO> list();
+	public List<UserPO> list(UserPO userPO);
 }

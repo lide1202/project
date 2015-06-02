@@ -20,6 +20,15 @@
 		select
 		<include refid="Base_Column_List" />
 		from t_user
+		<where>
+			<if test="loginname != null">
+				AND loginname LIKE CONCAT(CONCAT('%', #{loginname}),'%')
+			</if>
+			
+			<if test="status != null">
+				AND status=#{status}
+			</if>
+		</where>
 	</select>
 
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"

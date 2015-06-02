@@ -13,6 +13,7 @@
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<pattern>${LOG_MSG}</pattern>
 		</layout>
+		
 	</appender>
 	
 	<appender name="FILE_ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">

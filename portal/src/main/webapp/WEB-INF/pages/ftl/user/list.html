@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>user list</title>
+
+<link rel="stylesheet" href="${staticResPath}/resources/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${staticResPath}/resources/bootstrap/geboadmin/css/blue.css" id="link_theme" />
+<link rel="stylesheet" href="${staticResPath}/resources/bootstrap/geboadmin/css/style.css" />
+<link rel="stylesheet" href="${staticResPath}/resources/bootstrap/geboadmin/css/base.css" />
+
+</head>
+<body>
+<h3 class="heading">用户管理</h3>
+
+<div>
+	<form method="post" name="queryForm" id="queryForm">
+		<div class="module moduleSearch clearfix">
+		
+			<div class="item" id="loginname">
+				<span class="moduleLabel">用户名</span>
+				<div class="input-append">
+					<input type="text" name="loginname" placeholder="包含关键字"/>
+				</div>
+			</div>
+		 
+			<div class="item" id="status">
+				<span class="moduleLabel">状态</span>
+				<div class="ui-selector medium">
+					<select class="span3" name="status">
+						<option value="">请选择</option>
+						<option value="0">禁用</option>
+						<option value="1">启用</option>
+					</select>
+					<i class="arrow"></i>
+				</div>
+			</div>
+
+			
+			<div class="item clear">
+				<span class="moduleLabel">&nbsp;</span>
+				<div class="btns">
+					<button class="btn btn-primary btn-custom" type="button" id="searchButton" >查询</button>
+					<button class="btn btn-custom" type="reset">重置</button>
+				</div>
+			</div>
+			
+		</div>
+	</form>
+</div>
+<h3 class="heading"></h3>
+<table class="table table-bordered">
+	<thead>
+	<tr>
+		<th>用户ID</th>
+		<th>登录名</th>
+		<th>密码</th>
+		<th>邮箱</th>
+		<th>状态</th>
+		<th>授权码</th>
+		<th>操作</th>
+	</tr>
+	</thead>
+	<tbody>
+	<#list userList as item>
+		<tr>
+		<td>${item.uid}</td>
+		<td>${item.loginname}</td>
+		<td>${item.loginpass}</td>
+		<td>${item.email}</td>
+		<td>
+			<#if item.status==true>
+			启用
+			<#else>
+			禁用
+			</#if>
+		</td>
+		<td>${item.activationcode}</td>	
+		<td>
+	        <a href="#" class="sepV_a" title="View"><i class="icon-info-sign"></i></a>
+			<a href="#" class="sepV_a" title="Edit"><i class="icon-pencil"></i></a>
+	        <a href="#" title="Delete"><i class="icon-trash"></i></a>
+		</td>
+		</tr>
+	</#list>
+	</tbody>
+</table>
+<script src="${staticResPath}/resources/bootstrap/geboadmin/js/jquery.min.js"></script>	
+<script src="${staticResPath}/resources/bootstrap/geboadmin/lib/validation/jquery.validate.min.js"></script>
+<script src="${staticResPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//查询按钮
+	$("#searchButton").click(function(){
+		if(validator.form()){
+			//请求控制器，返回页面，用jquery.load方法加载table
+			$("table").load("${staticResPath}/user/list.html table",
+					{
+						loginname:$("input[name='loginname']").val(),
+				    	status:$("select[name='status']").val()
+				    },
+				    function(data,statusTxt){
+				    	if(statusTxt=="success"){
+				    		
+				    	}
+				    	if(statusTxt=="error"){
+				    		
+				    	}
+			});
+		}
+	});
+	
+	//表单验证
+	var validator=$("#queryForm").validate({
+	//$("form[name='queryForm']").validate({	
+		errorClass: 'error',
+		validClass: 'valid',
+		highlight: function(element) {
+			$(element).closest('div').addClass("f_error");
+		},
+		unhighlight: function(element) {
+			$(element).closest('div').removeClass("f_error");
+		},
+		rules:{
+			loginname:{
+				required:true,
+				rangelength:[2,10]
+			},
+			status:{
+				required:true
+			}
+		},
+		messages:{
+			loginname:{
+				required:"请输入关键字",
+				rangelength:jQuery.format("{0}-{1}个字 符")
+			},
+			status:{
+				required:"请选择"
+			}
+		}
+	});
+});
+</script>
+</body>
+</html>
