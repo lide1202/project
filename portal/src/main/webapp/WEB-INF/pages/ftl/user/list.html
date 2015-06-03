@@ -11,86 +11,121 @@
 
 </head>
 <body>
-<h3 class="heading">用户管理</h3>
-
-<div>
-	<form method="post" name="queryForm" id="queryForm">
-		<div class="module moduleSearch clearfix">
-		
-			<div class="item" id="loginname">
-				<span class="moduleLabel">用户名</span>
-				<div class="input-append">
-					<input type="text" name="loginname" placeholder="包含关键字"/>
-				</div>
-			</div>
-		 
-			<div class="item" id="status">
-				<span class="moduleLabel">状态</span>
-				<div class="ui-selector medium">
-					<select class="span3" name="status">
-						<option value="">请选择</option>
-						<option value="0">禁用</option>
-						<option value="1">启用</option>
-					</select>
-					<i class="arrow"></i>
-				</div>
-			</div>
-
+	<h3 class="heading">用户管理</h3>
+	
+	<div>
+		<form method="post" name="queryForm" id="queryForm">
+			<div class="module moduleSearch clearfix">
 			
-			<div class="item clear">
-				<span class="moduleLabel">&nbsp;</span>
-				<div class="btns">
-					<button class="btn btn-primary btn-custom" type="button" id="searchButton" >查询</button>
-					<button class="btn btn-custom" type="reset">重置</button>
+				<div class="item" id="loginname">
+					<span class="moduleLabel">用户名</span>
+					<div class="input-append">
+						<input type="text" name="loginname" placeholder="包含关键字"/>
+					</div>
 				</div>
+			 
+				<div class="item" id="status">
+					<span class="moduleLabel">状态</span>
+					<div class="ui-selector medium">
+						<select class="span3" name="status">
+							<option value="">请选择</option>
+							<option value="0">禁用</option>
+							<option value="1">启用</option>
+						</select>
+						<i class="arrow"></i>
+					</div>
+				</div>
+	
+				
+				<div class="item clear">
+					<span class="moduleLabel">&nbsp;</span>
+					<div class="btns">
+						<button class="btn btn-primary btn-custom" type="button" id="searchButton" >查询</button>
+						<button class="btn btn-custom" type="reset">重置</button>
+					</div>
+				</div>
+				
 			</div>
-			
-		</div>
-	</form>
-</div>
-<h3 class="heading"></h3>
-<table class="table table-bordered">
-	<thead>
-	<tr>
-		<th>用户ID</th>
-		<th>登录名</th>
-		<th>密码</th>
-		<th>邮箱</th>
-		<th>状态</th>
-		<th>授权码</th>
-		<th>操作</th>
-	</tr>
-	</thead>
-	<tbody>
-	<#list userList as item>
+		</form>
+	</div>
+	<table class="table table-bordered">
+		<thead>
 		<tr>
-		<td>${item.uid}</td>
-		<td>${item.loginname}</td>
-		<td>${item.loginpass}</td>
-		<td>${item.email}</td>
-		<td>
-			<#if item.status==true>
-			启用
-			<#else>
-			禁用
-			</#if>
-		</td>
-		<td>${item.activationcode}</td>	
-		<td>
-	        <a href="#" class="sepV_a" title="View"><i class="icon-info-sign"></i></a>
-			<a href="#" class="sepV_a" title="Edit"><i class="icon-pencil"></i></a>
-	        <a href="#" title="Delete"><i class="icon-trash"></i></a>
-		</td>
+			<th>用户ID</th>
+			<th>登录名</th>
+			<th>密码</th>
+			<th>邮箱</th>
+			<th>状态</th>
+			<th>授权码</th>
+			<th>操作</th>
 		</tr>
-	</#list>
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+		<#list userList as item>
+			<tr>
+			<td>${item.uid}</td>
+			<td>${item.loginname}</td>
+			<td>${item.loginpass}</td>
+			<td>${item.email}</td>
+			<td>
+				<#if item.status==true>
+				启用
+				<#else>
+				禁用
+				</#if>
+			</td>
+			<td>${item.activationcode}</td>	
+			<td>
+		        <a href="#" class="sepV_a" title="View"><i class="icon-info-sign"></i></a>
+				<a href="#" class="sepV_a" title="Edit"><i class="icon-pencil"></i></a>
+		        <a href="#" title="Delete"><i class="icon-trash"></i></a>
+			</td>
+			</tr>
+		</#list>
+		</tbody>
+	</table>
+	<div class="row-fluid" style="margin-top: 4px;width: 100%;">
+		<div class="span6">
+			<div class="span2">
+				<div class="dt_actions"></div>
+				<div id="dt_a_length" class="dataTables_length">
+					<label>
+						<select size="1" name="rowSize" aria-controls="dt_a">
+							<option value="10" selected="selected">每页10行</option>
+							<option value="25">每页25行</option>
+							<option value="50">每页50行</option>
+							<option value="100">每页100行</option>
+						</select>
+					</label>
+				</div>
+			</div>
+			<div class="span4">
+				<div class="dataTables_info" id="dt_a_info">Showing 51 to 57 of 57 entries</div>
+			</div>
+		</div>
+		<div class="span6">
+			<div class="dataTables_paginate paging_bootstrap_alt pagination">
+				<ul>
+					<li pageNum="1" class="first"><a href="javascript:void(0)">&lt;&lt; 首页</a></li>
+					<li pageNum="1" class="prev"><a href="javascript:void(0)">&lt;</a></li>
+					<#list 1..pagesize as item>
+						<li pageNum="${item}"><a href="javascript:void(0)">${item}</a></li>
+					</#list>
+					<!-- <li pageNum="5" class="active"><a href="javascript:void(0)">5</a></li> -->
+					<li pageNum="6" class="next disabled"><a href="javascript:void(0)">&gt;</a></li>
+					<li pageNum="1" class="last disabled"><a href="javascript:void(0)">尾页 &gt;&gt;</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
 <script src="${staticResPath}/resources/bootstrap/geboadmin/js/jquery.min.js"></script>	
 <script src="${staticResPath}/resources/bootstrap/geboadmin/lib/validation/jquery.validate.min.js"></script>
 <script src="${staticResPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 
 <script type="text/javascript">
+
 $(document).ready(function(){
 	//查询按钮
 	$("#searchButton").click(function(){
@@ -99,7 +134,8 @@ $(document).ready(function(){
 			$("table").load("${staticResPath}/user/list.html table",
 					{
 						loginname:$("input[name='loginname']").val(),
-				    	status:$("select[name='status']").val()
+				    	status:$("select[name='status']").val(),
+				    	rowSize:$("select[name='rowSize']").val()
 				    },
 				    function(data,statusTxt){
 				    	if(statusTxt=="success"){
@@ -142,6 +178,28 @@ $(document).ready(function(){
 			}
 		}
 	});
+	
+	//分页
+	$("div.pagination ul li a").each(function(){
+		$(this).click(function(){
+			$("table").load("${staticResPath}/user/list.html table",
+					{
+						loginname:$("input[name='loginname']").val(),
+				    	status:$("select[name='status']").val(),
+				    	rowSize:$("select[name='rowSize']").val(),
+				    	pageNum:$(this).parent().attr("pageNum")
+				    },
+				    function(data,statusTxt){
+				    	if(statusTxt=="success"){
+				    		
+				    	}
+				    	if(statusTxt=="error"){
+				    		
+				    	}
+			});
+		});
+	});
+	
 });
 </script>
 </body>

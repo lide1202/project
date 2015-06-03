@@ -37,10 +37,15 @@ public class UserServiceImpl extends BaseServiceImpl<UserPO,String> implements U
 		
 		String loginname=userPO.getLoginname();
 		String status=userPO.getStatus()!=null && userPO.getStatus()==true?"1":"0";
+		int rowSize=userPO.getRowSize()==0?10:userPO.getRowSize();
+		int pageNum=userPO.getPageNum()==0?1:userPO.getPageNum();
 		
-		List<UserPO> userList=userDao.findByStatementPostfix(".select", new String[]{"loginname","status"}, new String[]{loginname,status}, null, null);
+		int startRow=(pageNum-1)*rowSize;
+				
+		List<UserPO> userList=userDao.findByStatementPostfix(".select", new String[]{"loginname","status","rowSize","startRow"}, new Object[]{loginname,status,rowSize,startRow}, null, null);
 		
 		return userList;
+		
 		
 	}
 }

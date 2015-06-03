@@ -37,7 +37,10 @@ public class UserController{
 		
 		List<UserPO> userList=userService.list(userPO);
 		view.addObject("userList", userList);
-	
+		view.addObject("count", userList.size());
+		int pagesize=(int)Math.ceil((float)userList.size()/userPO.getRowSize());
+		
+		view.addObject("pagesize", pagesize);
 		return view;
 		
 	}

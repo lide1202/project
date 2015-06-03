@@ -471,11 +471,11 @@
                     setTimeout('$("html").removeClass("js")',1000);
                     
                     $("#iframepage").load(function(){
-                    	var mainHeight = window.screen.availHeight;
-                    	
-						var iframeHeight = $(this).contents().find("body").height();
+                    	var mainHeight = window.screen.availHeight-40;
+						//var iframeHeight = $(this).contents().find("body").height();
+						var iframeHeight = $(this).contents().height();
 						$(this).height(mainHeight>iframeHeight?mainHeight:iframeHeight);
-						}); 
+					}); 
                 });
             </script>
         

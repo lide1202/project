@@ -24,11 +24,13 @@
 			<if test="loginname != null">
 				AND loginname LIKE CONCAT(CONCAT('%', #{loginname}),'%')
 			</if>
-			
 			<if test="status != null">
 				AND status=#{status}
 			</if>
 		</where>
+		<if test="rowSize != null">
+			LIMIT ${startRow},${rowSize}
+		</if>
 	</select>
 
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"

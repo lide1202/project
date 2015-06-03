@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 import org.apache.ibatis.type.Alias;
 
+import com.lee.po.BasePO;
+
 @Alias("UserPO")
-public class UserPO implements Serializable{
+public class UserPO extends BasePO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
     private String uid;
